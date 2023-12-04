@@ -2,12 +2,29 @@ import { Module } from '@nestjs/common';
 import { BoardsModule } from './boards/boards.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './configs/typeorm.config';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import * as path from 'path';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot(typeORMConfig),
+    ConfigModule.forRoot({
+      isGlobal:true,
+      envFilePath: path.resolve(
+        __dirname,
+        '..',
+        'src',
+        'env',
+        `${process.env.NODE_ENV}`==='prduction'
+          ? '.env.production'
+          : '.env.development'
+      )
+    }),
+    // TypeOrmModule.forRoot(typeORMConfig),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: typeORMConfig,
+    }),
     BoardsModule
   ],
   controllers: [],

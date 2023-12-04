@@ -4,6 +4,7 @@ import { BoardStatus } from './board-status.enum';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 import { Board } from './board.entity';
+import { testName } from 'src/utils/enviroment';
 
 @Controller('boards')
 export class BoardsController {
@@ -31,7 +32,7 @@ export class BoardsController {
 
     @Get("/:id")
     getBoardById(@Param('id') id:number): Promise<Board>{
-        console.log(process.env.DB_USERNAME)
+        
         return this.boardsService.getBoardById(id);
     }
     // @Get("/:id")
