@@ -14,7 +14,7 @@ import * as path from 'path';
         '..',
         'src',
         'env',
-        `${process.env.NODE_ENV}`==='prduction'
+        `${process.env.NODE_ENV}`==='production'
           ? '.env.production'
           : '.env.development'
       )
@@ -30,4 +30,5 @@ import * as path from 'path';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+}

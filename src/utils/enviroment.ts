@@ -1,3 +1,3 @@
 import { ConfigService } from "@nestjs/config";
 
-export const testName = process.env.DB_USERNAMe
+export const {DB_USERNAME, DB_USERPASSWORD, DB_NAME} = process.env
