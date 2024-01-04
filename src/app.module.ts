@@ -3,6 +3,7 @@ import { BoardsModule } from './boards/boards.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './configs/typeorm.config';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 import * as path from 'path';
 
 @Module({
@@ -25,7 +26,8 @@ import * as path from 'path';
       inject: [ConfigService],
       useFactory: typeORMConfig,
     }),
-    BoardsModule
+    BoardsModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],

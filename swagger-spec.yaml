@@ -1,0 +1,65 @@
+openapi: 3.0.0
+paths:
+    /boards:
+        get:
+            operationId: BoardsController_getAllBoard
+            parameters: []
+            responses:
+                '200':
+                    description: ""
+        post:
+            operationId: BoardsController_createBoard
+            parameters: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateBoardDto'
+            responses:
+                '201':
+                    description: ""
+    '/boards/{id}':
+        get:
+            operationId: BoardsController_getBoardById
+            parameters:
+                -
+                    name: id
+                    required: true
+                    in: path
+                    schema:
+                        type: number
+            responses:
+                '200':
+                    description: ""
+        delete:
+            operationId: BoardsController_deleteBoard
+            parameters: []
+            responses:
+                '200':
+                    description: ""
+    '/boards/{id}/status':
+        patch:
+            operationId: BoardsController_updateBoardStatus
+            parameters:
+                -
+                    name: id
+                    required: true
+                    in: path
+                    schema:
+                        type: number
+            responses:
+                '200':
+                    description: ""
+info:
+    title: 'NestLearnProject API'
+    description: 'Nest Learn을 위한 API 문서입니다.'
+    version: '1.0'
+    contact: {}
+tags: []
+servers: []
+components:
+    schemas:
+        CreateBoardDto:
+            type: object
+            properties: {}
